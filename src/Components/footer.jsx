@@ -187,6 +187,7 @@ const Footer = () => {
         </motion.div>
       </motion.div>
     </footer>
+    // this is an edit
   );
 };
 
