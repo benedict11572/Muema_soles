@@ -88,12 +88,12 @@ const Footer = () => {
               </h4>
               <ul className="space-y-3">
                 {[
-                  { to: "/about", text: "About Us" },
-                  { to: "/contact", text: "Contact" },
-                  { to: "/terms", text: "Terms of Service" },
-                  { to: "/privacy", text: "Privacy Policy" },
-                  { to: "/returns", text: "Returns Policy" },
-                  { to: "/faq", text: "FAQ" }
+                  // { to: "/about", text: "About Us" },
+                  // { to: "/contact", text: "Contact" },
+                  // { to: "/terms", text: "Terms of Service" },
+                  // { to: "/privacy", text: "Privacy Policy" },
+                  // { to: "/returns", text: "Returns Policy" },
+                  // { to: "/faq", text: "FAQ" }
                   
                 ].map((link) => (
                   <li key={link.to}>
@@ -147,14 +147,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <span className="text-pink-400 mr-3">✉️</span>
-                <a href="mailto:support@urbansoles.com" className="text-gray-300 hover:text-white transition-colors">
-                  support@urbansoles.com
+                <a href="mailto:support@healthdiets.com" className="text-gray-300 hover:text-white transition-colors">
+                  support@healthdiets.com
                 </a>
               </li>
               <li className="flex items-center">
                 <span className="text-pink-400 mr-3">🌐</span>
-                <a href="https://www.urbansoles.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
-                  www.urbansoles.com
+                <a href="https://www.healthdiets.com" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors">
+                  www.healthdiets.com
                 </a>
               </li>
             </ul>

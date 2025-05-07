@@ -16,7 +16,7 @@ import AppNavbar from './Components/AppNavbar';
 
 import Footer from './Components/footer';
 
-import AdminDashboard from './Components/AdminDashboard';
+import AdminDashboard from './pages/AdminDashboard';
 
 import { Carousel } from 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import HomePage from './Components/HomePage';

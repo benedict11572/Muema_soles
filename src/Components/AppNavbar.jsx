@@ -72,7 +72,7 @@ const AppNavbar = () => {
         <Container>
           <Navbar.Brand href="/" className="d-flex align-items-center">
             <Image 
-              src={process.env.PUBLIC_URL + '/ChatGPT Image May 6, 2025, 12_15_37 PM.png'} 
+              src={process.env.PUBLIC_URL + '/1.png'} 
               alt="Company Logo" 
               width="40" 
               height="40" 
@@ -103,7 +103,7 @@ const AppNavbar = () => {
 
               {user ? (
                 <>
-                  <Nav.Link href="/cart" className="position-relative me-3">
+                  {/* <Nav.Link href="/cart" className="position-relative me-3">
                     <Cart3 size={20} />
                     {cartCount > 0 && (
                       <Badge 
@@ -115,7 +115,7 @@ const AppNavbar = () => {
                         {cartCount}
                       </Badge>
                     )}
-                  </Nav.Link>
+                  </Nav.Link> */}
 
                   <Dropdown align="end">
                     <Dropdown.Toggle variant="dark" id="dropdown-user" className="d-flex align-items-center">

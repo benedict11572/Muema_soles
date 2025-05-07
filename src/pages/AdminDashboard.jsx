@@ -173,7 +173,7 @@ const AdminDashboard = () => {
 
   const renderContent = () => {
     switch (activeTab) {
-      case 'dashboard':
+      case '/admin':
         return (
           <>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginBottom: 24 }}>
@@ -197,24 +197,28 @@ const AdminDashboard = () => {
       case 'products':
         return (
           <Card
-            title="Products Management"
-            size="small"
-            extra={<Button type="primary" icon={<PlusOutlined />} onClick={() => {
-              setIsModalVisible(true);
-              setEditingProduct(null);
-              form.resetFields();
-            }}>Add Product</Button>}
-            bodyStyle={{ padding: 12 }}
-          >
-            <Table
-              columns={productColumns}
-              dataSource={products}
-              rowKey="id"
-              loading={loading}
-              pagination={{ pageSize: 10 }}
-              size="small"
-            />
-          </Card>
+  title="Products Management"
+  size="small"
+  extra={
+        <Button 
+          type="primary" 
+          icon={<PlusOutlined />} 
+          onClick={() => navigate('/AddProduct')} // Updated to navigate to the Add Product page
+        >
+          Add Product
+        </Button>
+      }
+      bodyStyle={{ padding: 12 }}
+    >
+      <Table
+        columns={productColumns}
+        dataSource={products}
+        rowKey="id"
+        loading={loading}
+        pagination={{ pageSize: 10 }}
+        size="small"
+      />
+    </Card>
         );
       case 'users':
         return (
@@ -256,7 +260,7 @@ const AdminDashboard = () => {
             icon={<LogoutOutlined />}
             onClick={() => {
               localStorage.removeItem('adminToken');
-              navigate('/admin/login');
+              navigate('/admin');
             }}
             style={{ float: 'right' }}
           >

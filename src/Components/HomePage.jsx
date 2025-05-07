@@ -234,7 +234,7 @@ const HomePage = () => {
           <Button 
             variant="light" 
             size="lg"
-            onClick={() => handleDiseaseClick('/personalized-plans')}
+            onClick={() => handleDiseaseClick('/DietPlanGenerator')}
           >
             Get Your Plan
           </Button>
