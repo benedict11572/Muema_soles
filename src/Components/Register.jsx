@@ -34,37 +34,33 @@ const Register = () => {
 
   const validateForm = () => {
     const newErrors = {};
-    const phoneRegex = /^[0-9]{10,15}$/;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
+  
     if (!formData.name.trim()) {
       newErrors.name = "Full name is required";
     }
-
+  
     if (formData.email && !emailRegex.test(formData.email)) {
       newErrors.email = "Please enter a valid email address";
     }
-
+  
     if (!formData.phone) {
       newErrors.phone = "Phone number is required";
-    } else if (!phoneRegex.test(formData.phone)) {
-      newErrors.phone = "Please enter a valid phone number";
     }
-
+  
     if (!formData.password) {
       newErrors.password = "Password is required";
     } else if (formData.password.length < 8) {
       newErrors.password = "Password must be at least 8 characters";
     }
-
+  
     if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match";
     }
-
+  
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
@@ -106,7 +102,7 @@ const Register = () => {
       );
 
       setSuccessMessage(response.data.message || "Registration successful!");
-      setTimeout(() => navigate("/login"), 2000);
+      setTimeout(() => navigate("/"), 2000);
     } catch (err) {
       console.error("Registration error:", err);
       

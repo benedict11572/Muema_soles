@@ -50,10 +50,7 @@ const AddProduct = () => {
 
         const token = localStorage.getItem("token");
         
-        if (!token) {
-            navigate("/register");
-            return;
-        }
+       
 
         // Basic validation
         if (!product.name.trim() || !product.price || !product.stock || !product.category || !product.image) {

@@ -44,10 +44,10 @@ const Footer = () => {
           {/* Column 1: About Us + Social */}
           <motion.div variants={itemVariants} className="footer-column">
             <h4 className="text-xl font-bold mb-6 relative pb-2 after:absolute after:bottom-0 after:left-0 after:w-12 after:h-1 after:bg-gradient-to-r after:from-pink-500 after:to-indigo-500">
-              About Urban Soles
+              About healthdiets
             </h4>
             <p className="text-gray-300 leading-relaxed mb-4">
-              Step into comfort with <span className="font-semibold text-pink-400">Urban Soles</span>, your go-to destination for stylish and high-quality footwear.
+              Step into comfort with <span className="font-semibold text-pink-400">healthdiets</span>, your go-to destination for health and high-quality diets.
             </p>
             <div className="flex space-x-4 mt-6">
               <a href="#" className="social-icon hover:text-pink-400 transition-colors">
@@ -70,7 +70,7 @@ const Footer = () => {
               <div className="flex">
                 <input 
                   type="email" 
-                  placeholder="Your email" 
+                  placeholder="ngumbaobenedict@gmail.com" 
                   className="px-4 py-2 w-full rounded-l-md bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-pink-500"
                 />
                 <button className="bg-gradient-to-r from-pink-500 to-indigo-500 px-4 py-2 rounded-r-md font-medium hover:opacity-90 transition-opacity">
@@ -94,6 +94,7 @@ const Footer = () => {
                   { to: "/privacy", text: "Privacy Policy" },
                   { to: "/returns", text: "Returns Policy" },
                   { to: "/faq", text: "FAQ" }
+                  
                 ].map((link) => (
                   <li key={link.to}>
                     <Link 

@@ -6,9 +6,7 @@ import {
   FaShoppingCart, 
   FaStar, 
   FaTimes, 
-  FaTrash, 
-  FaSearch,
-  FaEdit
+  FaSearch
 } from "react-icons/fa";
 import { 
   Container,
@@ -32,9 +30,6 @@ const GetProducts = () => {
     const [ratings, setRatings] = useState({});
     const [selectedImage, setSelectedImage] = useState(null);
     const [searchTerm, setSearchTerm] = useState("");
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [productToDelete, setProductToDelete] = useState(null);
-    const [editingProduct, setEditingProduct] = useState(null);
 
     const img_url = "https://ttok.pythonanywhere.com/static/images/";
     const navigate = useNavigate();
@@ -47,8 +42,15 @@ const GetProducts = () => {
         setError("");
         setLoading(true);
         try {
-            const response = await axios.get('https://ttok.pythonanywhere.com/api/get_products');
+            const response = await axios.get('https://ttok.pythonanywhere.com/api/get_products', {
+                headers: {
+                    "Accept": "application/json",
+                },
+                timeout: 10000,
+            });
+    
             const data = response.data;
+    
             if (Array.isArray(data)) {
                 setProducts(data);
             } else if (data.products && Array.isArray(data.products)) {
@@ -58,7 +60,8 @@ const GetProducts = () => {
                 setError("Unexpected API response format.");
             }
         } catch (error) {
-            setError(error.response?.data?.message || error.message);
+            console.error("Error fetching products:", error);
+            setError(error.response?.data?.message || "Failed to fetch products. Please try again.");
         } finally {
             setLoading(false);
         }
@@ -69,31 +72,6 @@ const GetProducts = () => {
             ...prevRatings,
             [productId]: prevRatings[productId] ? 0 : 1,
         }));
-    };
-
-    const confirmDelete = (product) => {
-        setProductToDelete(product);
-        setShowDeleteModal(true);
-    };
-
-    const handleDelete = async () => {
-        try {
-            const token = localStorage.getItem("token");
-            await axios.delete(`https://ttok.pythonanywhere.com/api/products/${productToDelete.id}`, {
-                headers: {
-                    Authorization: `Bearer ${token}`
-                }
-            });
-            setProducts(products.filter(p => p.id !== productToDelete.id));
-            setShowDeleteModal(false);
-        } catch (error) {
-            setError("Failed to delete product. Please try again.");
-        }
-    };
-
-    const handleEdit = (product) => {
-        setEditingProduct(product);
-        navigate(`/edit-product/${product.id}`, { state: { product } });
     };
 
     const handleProductClick = (product) => {
@@ -163,23 +141,6 @@ const GetProducts = () => {
                             {categoryProducts.map((product) => (
                                 <Col key={product.id} lg={3} md={4} sm={6} className="mb-4">
                                     <Card className="h-100 shadow-sm">
-                                        <div className="position-absolute end-0 top-0 p-2">
-                                            <Button 
-                                                variant="outline-danger" 
-                                                size="sm" 
-                                                className="me-1"
-                                                onClick={() => confirmDelete(product)}
-                                            >
-                                                <FaTrash />
-                                            </Button>
-                                            <Button 
-                                                variant="outline-primary" 
-                                                size="sm"
-                                                onClick={() => handleEdit(product)}
-                                            >
-                                                <FaEdit />
-                                            </Button>
-                                        </div>
                                         <Card.Img
                                             variant="top"
                                             src={img_url + product.image_url}
@@ -247,7 +208,6 @@ const GetProducts = () => {
                             Add New Product
                         </Button>
                     </div>
-                    
                 )
             )}
 
@@ -262,30 +222,8 @@ const GetProducts = () => {
                     />
                 </Modal.Body>
             </Modal>
-
-            {/* Delete Confirmation Modal */}
-            <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirm Delete</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    Are you sure you want to delete "{productToDelete?.name}"?
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
-                        Cancel
-                    </Button>
-                    <Button variant="danger" onClick={handleDelete}>
-                        Delete
-                    </Button>
-                </Modal.Footer>
-               
-            </Modal>
-            
         </Container>
-        
     );
-
 };
 
 export default GetProducts;
